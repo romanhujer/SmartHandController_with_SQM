@@ -12,7 +12,7 @@
 // Note that the SERIAL_DEBUG port cannot be used for normal communication with OnStep
 
 //      Parameter Name              Value        Default  Notes                                                                 Hint
-#define DEBUG                         OFF //         OFF, Use ON for background error messages only, use VERBOSE for all      Infreq
+#define DEBUG                    VERBOSE  //         OFF, Use ON for background error messages only, use VERBOSE for all      Infreq
                                           //              error and status messages, use PROFILER for VT100 task profiler,
                                           //              use REMOTE to forward verbose debug output to OnStep
 #define SERIAL_DEBUG               Serial //      Serial, Or use any h/w serial port. Serial1 or Serial2, etc. as supported.  Option
@@ -25,21 +25,21 @@
                                           //              ***     LEAVING THIS OPTION ENABLED CAN CAUSE EXCESSIVE NV          ***
                                           //              ***     WEAR AND DAMAGE THE MICROCONTROLLER NV SUBSYSTEM !!!        ***
 
-#define SERIAL_IP_MODE                OFF //         OFF, Use STATION to enable the interface (ESP32 only.)                   Option
+#define SERIAL_IP_MODE      STATION //     STATION //STATION // OFF //         OFF, Use STATION to enable the interface (ESP32 only.)                   Option
 // IP ADDRESS SETTINGS -------------------------------------------------------------------------------------------------------------
                                           //              then specify SERIAL_IP as the serial port in Config.h
 
-#define ONSTEP1_HOST_NAME        "OnStep" //    "OnStep", Wifi Host Name to connnect to, leave blank to disable.              Adjust
-#define ONSTEP1_SSID             "ONSTEP" //    "ONSTEP", Wifi alternate Station SSID to connnect to.                         Adjust
-#define ONSTEP1_PASSWORD       "password" //  "password", Wifi Station mode password.                                         Adjust
+#define ONSTEP1_HOST_NAME      "OnStepEQ6" //    "OnStep", Wifi Host Name to connnect to, leave blank to disable.              Adjust
+#define ONSTEP1_SSID           "OnStepEQ6" //    "ONSTEP", Wifi alternate Station SSID to connnect to.                         Adjust  
+#define ONSTEP1_PASSWORD       "12345678" //  "password", Wifi Station mode password.                                         Adjust
 #define ONSTEP1_IP_ADDR     {192,168,0,1} //  ..168,0,1}, Wifi Target IP Address to connect to.                               Adjust
 
-#define ONSTEP2_HOST_NAME       "OnStepX" //          "", Wifi Host Name to connnect to, leave blank to disable.              Adjust
-#define ONSTEP2_SSID            "OnStepX" //    "ONSTEP", Wifi alternate Station SSID to connnect to.                         Adjust
-#define ONSTEP2_PASSWORD       "password" //          "", Wifi alternate Station mode password.                               Adjust
+#define ONSTEP2_HOST_NAME      "OnStepEQ5" //          "", Wifi Host Name to connnect to, leave blank to disable.              Adjust
+#define ONSTEP2_SSID           "OnStepEQ5" //    "ONSTEP", Wifi alternate Station SSID to connnect to.                         Adjust
+#define ONSTEP2_PASSWORD       "12345678" //          "", Wifi alternate Station mode password.                               Adjust
 #define ONSTEP2_IP_ADDR     {192,168,0,1} //  ..168,0,1}, Wifi alternate Target IP Address to connect to.                     Adjust
 
-#define ONSTEP3_HOST_NAME              "" //          "", Wifi Host Name to connnect to, leave blank to disable.              Adjust
-#define ONSTEP3_SSID             "ONSTEP" //    "ONSTEP", Wifi alternate Station SSID to connnect to.                         Adjust
-#define ONSTEP3_PASSWORD       "password" //  "password", Wifi alternate Station mode password.                               Adjust
+#define ONSTEP3_HOST_NAME      "OnStepHrEM" //          "", Wifi Host Name to connnect to, leave blank to disable.              Adjust
+#define ONSTEP3_SSID           "OnStepHrEM" //    "ONSTEP", Wifi alternate Station SSID to connnect to.                         Adjust
+#define ONSTEP3_PASSWORD       "12345678" //  "password", Wifi alternate Station mode password.                               Adjust
 #define ONSTEP3_IP_ADDR     {192,168,0,1} //  ..168,0,1}, Wifi alternate Target IP Address to connect to.                     Adjust

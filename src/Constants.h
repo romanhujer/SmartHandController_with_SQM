@@ -38,6 +38,12 @@
 #define BMP280_SPI                  6      // BMP280 on SPI (default CS)
 #define WEATHER_LAST                6
 
+#define SQM_FIRST                   1
+#define TSL2591                     1     // Sky Quality Sensor  TSL2591
+#define SQM_LAST                    1
+
+
+
 // NV -------------------------------------------------------------------------------------------------------------------
 #define INIT_NV_KEY                 159301352UL
 

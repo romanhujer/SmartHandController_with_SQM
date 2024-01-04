@@ -1,4 +1,11 @@
-# OnStep Smart Hand Controller
+# OnStep Smart Hand Controller  &  Sky Quality sensor
+
+My modificatiosn  for my PCB https://oshwlab.com/hujer.roman/wireless-shc
+
+ - add  SQM   TSL2591
+
+
+
 The SHC adds dedicated hand controller functionality to an OnStep or OnStepX telescope controller. 
 This firmware is designed to run on ESP32 (recommended) or Teensy3.2 or Teensy4.0 hardware.
 It can communicate with OnStep over the ST4 guiding port (which automatically reconfigures itself for synchronous serial communications when it detects an SHC) or over WiFi instead if running on an ESP32 (recommended.)

@@ -641,7 +641,7 @@ void UI::updateMainDisplay(u8g2_uint_t page) {
       // H46% DP13.7C
       display->setFont(LF_STANDARD);
 
-      double T, P, H, DP;
+      double T, P, H, DP, SQ; 
       if (status.getT(T) && status.getP(P) && status.getH(H) && status.getDP(DP)) {
         char temp[32], line[64];
         u8g2_uint_t y = 36;
@@ -657,10 +657,18 @@ void UI::updateMainDisplay(u8g2_uint_t page) {
         y += line_height + 4;
         sprintf(line, "H%d%%", (int)round(H));
         display->DrawFwNumeric(0, y, line);
-
+#if SKY_QUAL != OFF
+        if (status.getSQ(SQ)) { 
+          dtostrf(SQ, 3, 1, temp);
+          sprintf(line, "SQM%s %s", temp, "^");
+        
+        }
+#else
         dtostrf(DP, 3, 1, temp);
         sprintf(line, "DP%s\xb0%s", temp, "C");
-        display->DrawFwNumeric(dx-display->GetFwNumericWidth(line), y, line);
+        
+#endif  
+       display->DrawFwNumeric(dx-display->GetFwNumericWidth(line), y, line);      
       }
       
       display->setFont(LF_LARGE);

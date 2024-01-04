@@ -330,6 +330,9 @@ bool Status::getT(double &T) {
     {
       int l = strlen(temp); if (l > 0) temp[l - 1] = 0;
       f = atof(temp);
+#if WEATHER != OFF
+      f = onStep.MyTemperature;
+#endif 
       if (f >= -50.0 && f <= 100.0) { last = millis(); hasValue = true; }
     }
   if (hasValue) { T = f; return true; } else return false;
@@ -345,6 +348,9 @@ bool Status::getP(double &P) {
     {
       int l=strlen(temp); if (l > 0) temp[l - 1] = 0;
       f = atof(temp);
+#if WEATHER != OFF
+      f = onStep.MyPressure;
+#endif 
       if (f >= 500.0 && f <= 2000.0) { last = millis(); hasValue = true; }
     }
   if (hasValue) { P = f; return true; } else return false;
@@ -360,6 +366,9 @@ bool Status::getH(double &H) {
     {
       int l = strlen(temp); if (l > 0) temp[l - 1] = 0;
       f = atof(temp);
+#if WEATHER != OFF
+      f = onStep.MyHumidity;
+#endif 
       if (f >= 0.0 && f <= 100.0) { last = millis(); hasValue = true; }
     }
   if (hasValue) { H = f; return true; } else return false;
@@ -378,6 +387,17 @@ bool Status::getDP(double &DP) {
       if (f >= -50.0 && f <= 100.0) { last = millis(); hasValue = true; }
     }
   if (hasValue) { DP = f; return true; } else return false;
+};
+
+bool Status::getSQ(double &SQ) {
+   static double f = 0;
+   static bool hasValue = false;
+   static unsigned long last = 0;
+#if SKY_QUAL != OFF
+   f = onStep.MySQM;
+   if (f >= 0.0 && f <= 25.0) { last = millis(); hasValue = true; }
+#endif 
+  if (hasValue) { SQ = f; return true; } else return false;
 };
 
 bool Status::alignAddStar() {

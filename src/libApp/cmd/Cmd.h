@@ -16,6 +16,14 @@ enum CMD_RESULT {
 class OnStepCmd {
   public:
     bool isOk(CMD_RESULT val);
+#if WEATHER != OFF
+    float MyTemperature;
+    float MyPressure;
+    float MyHumidity;
+#endif
+#if SKY_QUAL != OFF
+    float MySQM;
+#endif    
     CMD_RESULT Get(char* command, char* output);
     // overloaded to allow const char* strings without compiler warnings, similar follow below
     CMD_RESULT Get(const char* command, char* output);

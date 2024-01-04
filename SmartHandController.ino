@@ -38,14 +38,18 @@ NVS nv;
 #include "src/lib/convert/Convert.h"
 #include "src/userInterface/UserInterface.h"
 #include "src/libApp/weather/Weather.h"
+#include "src/libApp/sqm/sqm.h"
 
 #if DEBUG == PROFILER
   extern void profiler();
 #endif
 
+
+
 const char Version[] = "Version " FirmwareVersionMajor "." FirmwareVersionMinor FirmwareVersionPatch;
 const int pin[7] = {B_PIN0, B_PIN1, B_PIN2, B_PIN3, B_PIN4, B_PIN5, B_PIN6};
 const int active[7] = {B_PIN0_ACTIVE_STATE, B_PIN1_ACTIVE_STATE, B_PIN2_ACTIVE_STATE, B_PIN3_ACTIVE_STATE, B_PIN4_ACTIVE_STATE, B_PIN5_ACTIVE_STATE, B_PIN6_ACTIVE_STATE};
+
 
 void systemServices() {
   nv.poll();
@@ -57,15 +61,25 @@ void systemServices() {
     char command[80];
 
     switch (i++ % 3) {
-      case 0: sprintF(command, ":SX9A,%0.1f#", weather.getTemperature()); onStep.Set(command); break;
-      case 1: sprintF(command, ":SX9B,%0.1f#", weather.getPressure()); onStep.Set(command); break;
-      case 2: sprintF(command, ":SX9C,%0.1f#", weather.getHumidity()); onStep.Set(command); break;
+      case 0: onStep.MyTemperature = weather.getTemperature(); sprintF(command, ":SX9A,%0.1f#", onStep.MyTemperature ); onStep.Set(command); break;
+      case 1: onStep.MyPressure =  weather.getPressure(); sprintF(command, ":SX9B,%0.1f#", onStep.MyPressure ); onStep.Set(command); break;
+      case 2: onStep.MyHumidity = weather.getHumidity(); sprintF(command, ":SX9C,%0.1f#", onStep.MyHumidity ); onStep.Set(command); break;
     }
   }
 #endif
 
+#if SKY_QUAL != OFF
+  void sqmServices() {
+    sqm.setTemperature( onStep.MyTemperature);
+    float mg = sqm.getSQM();
+    onStep.MySQM  = mg; 
+    VF("MSG: SQM = ");
+  }
+#endif
+
 void setup(void) {
-  
+
+
   // start debug serial port
   if (DEBUG == ON || DEBUG == VERBOSE) SERIAL_DEBUG.begin(SERIAL_DEBUG_BAUD);
   delay(2000);
@@ -91,6 +105,16 @@ void setup(void) {
     VF("MSG: Setup, starting weather services task (rate 3333ms priority 7)... ");
     if (tasks.add(3333, 0, true, 7, weatherServices, "WeaFwd")) { VL("success"); } else { VL("FAILED!"); }
   #endif
+  
+  #if SKY_QUAL != OFF
+    // get SQM
+     sqm.init();
+    // add task to forward readings to OnStep
+    VF("MSG: Setup, starting SQM services task (rate 9999ms priority 7)... ");
+    if (tasks.add(9999, 0, true, 7, sqmServices, "sqmSvcs")) { VL("success"); } else { VL("FAILED!"); }
+  #endif
+
+
 
   // start task manager debug events
   #if DEBUG == PROFILER

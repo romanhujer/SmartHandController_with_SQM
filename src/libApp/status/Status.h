@@ -56,6 +56,8 @@ public:
   bool getP(double &P);
   bool getH(double &H);
   bool getDP(double &DP);
+  bool getSQ(double &SQ);
+  
   PierState getPierState();
   TrackRate getTrackingRate();
   RateCompensation getRateCompensation();
