@@ -659,8 +659,9 @@ void UI::updateMainDisplay(u8g2_uint_t page) {
         display->DrawFwNumeric(0, y, line);
 #if SKY_QUAL != OFF
         if (status.getSQ(SQ)) { 
-          dtostrf(SQ, 3, 1, temp);
-          sprintf(line, "SQM%s %s", temp, "^");
+          dtostrf(SQ, 4, 2, temp);
+//          sprintf(line, "SQ:%s%s", temp, "^");
+          sprintf(line, "SQ%s", temp);
         
         }
 #else
