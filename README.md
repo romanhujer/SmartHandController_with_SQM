@@ -1,8 +1,8 @@
-# OnStep Smart Hand Controller  &  Sky Quality sensor
+# OnStep Smart Hand Controller with Sky Quality Sensor
 
-My modificatiosn  for my PCB https://oshwlab.com/hujer.roman/wireless-shc
+My modificatiosn for my PCB https://oshwlab.com/hujer.roman/wireless-shc
 
- - add  SQM   TSL2591
+For SQM with TSL2591 sensor need using customized library from https://github.com/hjd1964/Adafruit_TSL2591_Library 
 
 
 
