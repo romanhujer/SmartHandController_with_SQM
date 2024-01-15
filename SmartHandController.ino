@@ -30,7 +30,7 @@
 #define Product               "SHC"
 #define FirmwareVersionMajor  "4"
 #define FirmwareVersionMinor  "01"
-#define FirmwareVersionPatch  "b"
+#define FirmwareVersionPatch  "^"
 
 #include "src/Common.h"
 NVS nv;
@@ -111,7 +111,7 @@ void setup(void) {
      sqm.init();
     // add task to forward readings to OnStep
     VF("MSG: Setup, starting SQM services task (rate 9999ms priority 7)... ");
-    if (tasks.add(9999, 0, true, 7, sqmServices, "sqmSvcs")) { VL("success"); } else { VL("FAILED!"); }
+    if (tasks.add(6666, 0, true, 7, sqmServices, "sqmSvcs")) { VL("success"); } else { VL("FAILED!"); }
   #endif
 
 

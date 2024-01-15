@@ -33,9 +33,10 @@
                                           //         BME280 or BMP280 for temperature, pressure.  BME280 for humidity also.
 
 // SQM SENSOR ------------------------------------------------------------------------------------------------------------------
-#define SKY_QUAL            TSL2591  //     OFF   ON  or TSL2591  Support SQM  sensor
+#define SKY_QUAL         TSL2591  //     OFF   ON  or TSL2591  Support SQM  sensor
+#define SKY_TEMPERATURE       ON  //     OFF   ON  correct for sensor temperature sensitivity
 #define SKY_QUAL_ZERO         0.0 //    0.0, n. Where n=-2.0 to 2.0 (in mpsas) offset
-#define SKY_QUAL_SCALE        1.0 //    1.0, n. Where n=-0.5 to 1.5 (x) sensitivity scale factor
+#define SKY_QUAL_SCALE        1.5 //    1.0, n. Where n=-0.5 to 1.5 (x) sensitivity scale factor
 
 
 
