@@ -12,7 +12,7 @@
 // Note that the SERIAL_DEBUG port cannot be used for normal communication with OnStep
 
 //      Parameter Name              Value        Default  Notes                                                                 Hint
-#define DEBUG                    VERBOSE  //         OFF, Use ON for background error messages only, use VERBOSE for all      Infreq
+#define DEBUG                    OFF //VERBOSE  //         OFF, Use ON for background error messages only, use VERBOSE for all      Infreq
                                           //              error and status messages, use PROFILER for VT100 task profiler,
                                           //              use REMOTE to forward verbose debug output to OnStep
 #define SERIAL_DEBUG               Serial //      Serial, Or use any h/w serial port. Serial1 or Serial2, etc. as supported.  Option
@@ -43,3 +43,8 @@
 #define ONSTEP3_SSID           "OnStepHrEM" //    "ONSTEP", Wifi alternate Station SSID to connnect to.                         Adjust
 #define ONSTEP3_PASSWORD       "12345678" //  "password", Wifi alternate Station mode password.                               Adjust
 #define ONSTEP3_IP_ADDR     {192,168,0,1} //  ..168,0,1}, Wifi alternate Target IP Address to connect to.                     Adjust
+
+#define ONSTEP4_HOST_NAME      "OnStepESP" //          "", Wifi Host Name to connnect to, leave blank to disable.              Adjust
+#define ONSTEP4_SSID           "OnStepESP" //    "ONSTEP", Wifi alternate Station SSID to connnect to.                         Adjust
+#define ONSTEP4_PASSWORD       "12345678" //  "password", Wifi alternate Station mode password.                               Adjust
+#define ONSTEP4_IP_ADDR     {192,168,0,1} //  ..168,0,1}, Wifi alternate Target IP Address to connect to.                     Adjust

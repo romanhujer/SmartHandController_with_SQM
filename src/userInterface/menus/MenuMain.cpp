@@ -2,12 +2,20 @@
 // MenuMain, for UserInterface
 #include "../UserInterface.h"
 
+#if SKY_QUAL != OFF
+  void UI::menuSQM() {
+  static unsigned short current_selection_sqm = 1;  
+  
+  }
+#endif
+
+
 #if SERIAL_IP_MODE == STATION
   void UI::menuWifi() {
     static unsigned short current_selection_wifi = 1;
 
     int wifiCount = 0;
-    char host_list[40];
+    char host_list[60];
     strcpy(host_list, "");
     if (strlen(STA1_HOST_NAME) != 0) {
       wifiCount++;
@@ -20,6 +28,11 @@
           wifiCount++;
           strcat(host_list, "\n");
           strncat(host_list, STA3_HOST_NAME, 16);
+          if (strlen(STA4_HOST_NAME) != 0) {
+            wifiCount++;
+            strcat(host_list, "\n");
+            strncat(host_list, STA4_HOST_NAME, 16);
+          }
         }
       }
     }
@@ -136,7 +149,7 @@ void UI::menuParking() {
 
   current_selection_L1 = 1;
   while (current_selection_L1 != 0) {
-    const char *string_list_SettingsL1 = L_PARK "\n" L_UNPARK "\n" L_SETPARK;
+    const char *string_list_SettingsL1 = L_PARK "\n" L_UNPARK    "\n" L_SETPARK;
     current_selection_L1 = display->UserInterfaceSelectionList(&keyPad, L_PARKING, current_selection_L1, string_list_SettingsL1);
     switch (current_selection_L1) {
       case 1:

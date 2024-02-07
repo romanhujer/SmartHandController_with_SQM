@@ -651,25 +651,23 @@ void UI::updateMainDisplay(u8g2_uint_t page) {
         sprintf(line, "T%s\xb0%s", temp, "C");
         display->DrawFwNumeric(0, y, line);
 
-        sprintf(line, "P%dmb",(int)round(P));
-        display->DrawFwNumeric(dx - display->GetFwNumericWidth(line), y, line);
-
-        y += line_height + 4;
-        sprintf(line, "H%d%%", (int)round(H));
-        display->DrawFwNumeric(0, y, line);
 #if SKY_QUAL != OFF
         if (status.getSQ(SQ)) { 
           dtostrf(SQ, 4, 2, temp);
 //          sprintf(line, "SQ:%s%s", temp, "^");
           sprintf(line, "SQ%s", temp);
-        
         }
 #else
+        sprintf(line, "P%dmb",(int)round(P));
+#endif
+        display->DrawFwNumeric(dx - display->GetFwNumericWidth(line), y, line);
+
+        y += line_height + 4;
+        sprintf(line, "H%d%%", (int)round(H));
+        display->DrawFwNumeric(0, y, line);
         dtostrf(DP, 3, 1, temp);
         sprintf(line, "DP%s\xb0%s", temp, "C");
-        
-#endif  
-       display->DrawFwNumeric(dx-display->GetFwNumericWidth(line), y, line);      
+        display->DrawFwNumeric(dx-display->GetFwNumericWidth(line), y, line);      
       }
       
       display->setFont(LF_LARGE);
@@ -726,6 +724,10 @@ void UI::connect() {
   char s[20] = "";
   int thisTry = 0;
   bool connectSuccess;
+
+//  #if SKY_QUAL != OFF
+//     if (firstConnect) menuSQM();
+//  #endif 
 
   #if SERIAL_IP_MODE == STATION
     if (firstConnect) menuWifi();
